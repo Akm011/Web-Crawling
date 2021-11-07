@@ -3,7 +3,7 @@ import re
 import requests
 
 print("Going through all links ")
-html_text = requests.get("https://nitsri.ac.in/Default.aspx").text
+html_text = requests.get("https://nitsri.ac.in/").text
 
 
 li = []
@@ -16,11 +16,12 @@ for link in li:
     try:
         pg_text1 = requests.get(link).text
         pat1 = '\d\d\d\d\d\d\d\d\d\d'
-        match = re.search(pat1, pg_text1)
+        match = re.findall(pat1, pg_text1)
         if match == None:
             pass
         else:
-            print(match.group())
+            if match!=[]:
+                print(match)
     except:
         pass
 
@@ -38,10 +39,10 @@ for link in li:
 
 try:
     pat1 = '\d\d\d\d\d\d\d\d\d\d'
-    match = re.search(pat1, html_text)
+    match = re.findall(pat1, html_text)
     if match == None:
         pass
     else:
-        print(match.group())
+        print(match)
 except:
     pass
